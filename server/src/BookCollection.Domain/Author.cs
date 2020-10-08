@@ -1,9 +1,11 @@
-﻿namespace BookCollection.Domain
+﻿using System;
+
+namespace BookCollection.Domain
 {
     /// <summary>
     /// A person who writes books.
     /// </summary>
-    public sealed class Author
+    public sealed class Author : IComparable
     {
         /// <summary>
         /// The name of this Author.
@@ -37,6 +39,29 @@
                 Author otherAuthor = (Author)obj;
                 return Name.Equals(otherAuthor.Name);
             }
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+            {
+                return 1;
+            }
+
+            Author otherAuthor = obj as Author;
+            if (otherAuthor != null)
+            {
+                return Name.CompareTo(otherAuthor.Name);
+            }
+            else
+            {
+                throw new ArgumentException("Object is not an Author");
+            }
+        }
+
+        public override string ToString()
+        {
+            return "<Author: Name=" + Name + ">";
         }
     }
 }

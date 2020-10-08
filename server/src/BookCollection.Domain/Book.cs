@@ -1,4 +1,6 @@
-﻿namespace BookCollection.Domain
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace BookCollection.Domain
 {
     /// <summary>
     /// A book.
@@ -8,12 +10,13 @@
         /// <summary>
         /// The title of this book.
         /// </summary>
-        public string Title { get; }
+        [Key]
+        public string Title { get; private set; }
 
         /// <summary>
         /// The author of this book.
         /// </summary>
-        public Author Author { get; }
+        public Author Author { get; private set; }
 
         /// <summary>
         /// Create a book with a given title and author.
@@ -24,6 +27,11 @@
         {
             Title = title;
             Author = author;
+        }
+
+        // For Entity Framework
+        private Book()
+        {
         }
 
         public override int GetHashCode()

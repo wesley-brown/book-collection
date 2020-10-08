@@ -5,4 +5,15 @@
   </PropertyGroup>
 
 
+  <ItemGroup>
+    <Folder Include="ViewAllBooks\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookCollection.App\BookCollection.App.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.8" />
+  </ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookCollection.Domain
 {
@@ -10,7 +11,8 @@ namespace BookCollection.Domain
         /// <summary>
         /// The name of this Author.
         /// </summary>
-        public string Name { get; }
+        [Key]
+        public string Name { get; private set; }
 
         /// <summary>
         /// Create an author with a given name.
@@ -19,6 +21,11 @@ namespace BookCollection.Domain
         public Author(string name)
         {
             Name = name;
+        }
+
+        // For Entity Framework
+        private Author()
+        {
         }
 
         public override int GetHashCode()

@@ -33,5 +33,24 @@
             hash = 31 * hash + Author.GetHashCode();
             return hash;
         }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                Book otherBook = (Book)obj;
+                return Title.Equals(otherBook.Title)
+                    && Author.Equals(otherBook.Author);
+            }
+        }
+
+        public override string ToString()
+        {
+            return "<Book: Title=" + Title + ", Author=" + Author + ">";
+        }
     }
 }

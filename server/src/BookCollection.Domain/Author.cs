@@ -25,5 +25,18 @@
             hash = 31 * hash + Name.GetHashCode();
             return hash;
         }
+
+        public override bool Equals(object obj)
+        {
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
+            else
+            {
+                Author otherAuthor = (Author)obj;
+                return Name.Equals(otherAuthor.Name);
+            }
+        }
     }
 }

@@ -11,5 +11,13 @@ namespace BookCollection.Domain.Tests
             var authorTwo = new Author("J. R. R. Tolkein");
             Assert.Equal(authorOne.GetHashCode(), authorTwo.GetHashCode());
         }
+
+        [Fact]
+        public void identical_authors_are_equal()
+        {
+            var authorOne = new Author("J. R. R. Tolkein");
+            var authorTwo = new Author("J. R. R. Tolkein");
+            Assert.Equal(authorOne, authorTwo);
+        }
     }
 }

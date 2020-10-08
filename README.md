@@ -13,6 +13,12 @@ Use the .NET Core CLI to build the server:
 dotnet build
 ```
 
+## Testing
+To run all tests, run the following inside the server directory:
+```shell
+dotnet test
+```
+
 ## Usage
 To run the REST API server, run the following command inside the 
 server/src/BookCollection directory:

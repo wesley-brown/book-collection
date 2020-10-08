@@ -1,4 +1,5 @@
 ﻿using BookCollection.Domain;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace BookCollection.Data.Books
@@ -16,7 +17,7 @@ namespace BookCollection.Data.Books
         {
             get
             {
-                return context.Books;
+                return context.Books.Include(book => book.Author);
             }
         }
     }

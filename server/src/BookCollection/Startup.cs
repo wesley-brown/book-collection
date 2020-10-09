@@ -66,19 +66,30 @@ namespace BookCollection
             {
                 var context = serviceScope.ServiceProvider.GetService<BookCollectionDbContext>();
                 var jRRTolkein = new Author("J. R. R. Tolkein");
-                context.Books.Add(new Book("The Hobbit", jRRTolkein));
-                context.Books.Add(new Book("The Lord of the Rings", jRRTolkein));
                 var georgeRRMartin = new Author("George R. R. Martin");
-                context.Books.Add(new Book("A Game of Thrones", georgeRRMartin));
-                context.Books.Add(new Book("A Clash of Kings", georgeRRMartin));
                 var jKRowling = new Author("J. K. Rowling");
-                context.Books.Add(new Book(
-                    "Harry Potter and the Philosopher's Stone",
-                    jKRowling));
+                var books = new Book[] {
+                    new Book("The Hobbit", jRRTolkein),
+                    new Book("The Lord of the Rings", jRRTolkein),
+                    new Book("A Game of Thrones", georgeRRMartin),
+                    new Book("A Clash of Kings", georgeRRMartin),
+                    new Book(
+                        "Harry Potter and the Philosopher's Stone",
+                        jKRowling)
+                };
+                foreach (var book in books)
+                {
+                    if (context.Books.Find(book.Title) == null)
+                    {
+                        context.Books.Add(book);
+                    }
+                }
                 context.SaveChanges();
             }
 
             app.UseHttpsRedirection();
+
+            app.UseStaticFiles();
 
             app.UseRouting();
 

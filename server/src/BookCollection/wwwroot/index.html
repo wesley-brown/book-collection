@@ -3,9 +3,9 @@
 <body>
     <h1>Books</h1>
     <a href="AddBook.html">Add a book</a>
+    <a href="DeleteBook.html">Delete a book</a>
     <div id="booksDiv"></div>
-    <script>
-        class Author {
+    <script>class Author {
             constructor(name) {
                 this.name = name;
             }
@@ -40,7 +40,6 @@
                     bookEntry.innerHTML = book.title + " by: " + book.author.name;
                     booksDiv.appendChild(bookEntry);
                 }
-            });
-    </script>
+            });</script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <h1>Delete a Book</h1>
+    <a href="https://localhost:5001/index.html">Back to list</a>
+    <label>Title</label>
+    <input id="titleInput" type="text" />
+    <button type="submit" onclick="deleteBook()">Delete</button>
+    <script>const deleteBook = () => {
+            const titleInput = document.getElementById('titleInput');
+            const title = titleInput.value;
+            const url = 'https://localhost:5001/api/books/' + title;
+            fetch(url, {
+                method: 'DELETE',
+                'Content-Type': 'application/json'
+            })
+                .then(response => {
+                    window.location.replace('https://localhost:5001/index.html');
+                });
+        };</script>
+</body>
+</html>

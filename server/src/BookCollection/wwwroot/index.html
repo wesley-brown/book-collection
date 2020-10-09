@@ -33,6 +33,7 @@
             })
             .then(books => {
                 for (let bookData of books) {
+                    console.log(bookData);
                     const author = new Author(bookData.author.name);
                     const book = new Book(bookData.title, author);
                     const bookEntry = document.createElement("p");

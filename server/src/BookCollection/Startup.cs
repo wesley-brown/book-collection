@@ -1,5 +1,6 @@
 using BookCollection.App.AddBook;
 using BookCollection.App.DeleteBook;
+using BookCollection.App.EditBook;
 using BookCollection.App.ViewAuthors;
 using BookCollection.App.ViewBooks;
 using BookCollection.Data;
@@ -42,6 +43,9 @@ namespace BookCollection
 
             // Delete book use case
             services.AddTransient<BookDeleter, BookDeleter>();
+
+            // Edit book use case
+            services.AddTransient<BookEditor, BookEditor>();
 
             services.AddControllers();
         }

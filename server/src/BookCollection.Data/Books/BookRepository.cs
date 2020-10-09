@@ -21,6 +21,11 @@ namespace BookCollection.Data.Books
             }
         }
 
+        public Book WithTitle(string title)
+        {
+            return context.Books.Find(title);
+        }
+
         public Book Add(Book book)
         {
             var addedBook = context.Add(book);

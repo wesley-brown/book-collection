@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <h1>Edit Book</h1>
+    <p>Here you can change the author of a book</p>
+    <a href="https://localhost:5001/index.html">Back to list</a>
+    <label>Title</label>
+    <input id="titleInput" type="text" />
+    <label>New Author</label>
+    <input id="newAuthorInput" type="text" />
+    <button type="submit" onclick="editBook()">Edit</button>
+    <script>
+        const editBook = () => {
+            const titleInput = document.getElementById('titleInput');
+            const title = titleInput.value;
+            const newAuthorInput = document.getElementById('newAuthorInput');
+            const author = newAuthorInput.value;
+            const url = 'https://localhost:5001/api/books/' + title;
+            fetch(url, {
+                'method': 'PUT',
+                'body': JSON.stringify({ author }),
+                'headers': {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                window.location.replace('https://localhost:5001/index.html');
+            });
+        };
+    </script>
+</body>
+</html>

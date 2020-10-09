@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <h1>Books</h1>
+    <div id="booksDiv"></div>
+    <script>
+        class Author {
+            constructor(name) {
+                this.name = name;
+            }
+
+            toString() {
+                return `<Author: name=${this.name}>`;
+            }
+        }
+
+        class Book {
+            constructor(title, author) {
+                this.title = title;
+                this.author = author;
+            }
+
+            toString() {
+                return `<Book: title=${this.title}, author=${this.author}>`;
+            }
+        }
+
+        const booksDiv = document.getElementById('booksDiv');
+        fetch('https://localhost:5001/api/books')
+            .then(response => {
+                return response.json();
+            })
+            .then(books => {
+                for (let bookData of books) {
+                    const author = new Author(bookData.author.name);
+                    const book = new Book(bookData.title, author);
+                    const bookEntry = document.createElement("p");
+                    bookEntry.innerHTML = book.title + " by: " + book.author.name;
+                    booksDiv.appendChild(bookEntry);
+                    console.log(books);
+                }
+            });
+    </script>
+</body>
+</html>

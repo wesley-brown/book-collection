@@ -10,11 +10,6 @@ Book Collection requires the following programs:
 
 Clone this repo to your desired location and move into that directory.
 
-Use the .NET Core CLI to build the server:
-```shell
-dotnet build
-```
-
 Install the Microsoft SQL Server on Linux image:
 ```shell
 docker pull mcr.microsoft.com/mssql/server:2017-latest
@@ -27,16 +22,23 @@ docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Your_password123" \
 -d mcr.microsoft.com/mssql/server:2017-latest
 ```
 
+Navigate to the BookCollection project:
+```shell
+cd server/src/BookCollection
+```
+
 Update the database:
 ```shell
 dotnet ef database update
 ```
 
-Navigate to the BookCollection project and run it:
+Run the server:
 ```shell
-cd server/src/BookCollection
 dotnet run
 ```
+
+The server will now be running on localhost:5001. The REST API can be found at 
+/api/books while the web app can be found at /index.html.
 
 ## Testing
 To run all tests, run the following inside the server directory:

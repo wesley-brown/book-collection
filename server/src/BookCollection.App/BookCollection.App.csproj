@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewBooks\" />
+    <Folder Include="AddBook\" />
+    <Folder Include="ViewAuthors\" />
+    <Folder Include="DeleteBook\" />
+    <Folder Include="EditBook\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookCollection.Data\BookCollection.Data.csproj" />
+  </ItemGroup>
+</Project>

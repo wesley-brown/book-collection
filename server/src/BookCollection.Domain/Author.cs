@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookCollection.Domain
 {
     /// <summary>
     /// A person who writes books.
     /// </summary>
+    [Table("Authors")]
     public sealed class Author : IComparable
     {
         /// <summary>

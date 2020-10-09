@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookCollection.Domain
 {
     /// <summary>
     /// A book.
     /// </summary>
+    [Table("Books")]
     public sealed class Book
     {
         /// <summary>

@@ -29,8 +29,11 @@ namespace BookCollection
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BookCollectionDbContext>(options => {
-                options.UseInMemoryDatabase("BookCollections_DB");
+                options.UseSqlServer(
+                    Configuration.GetConnectionString("DefaultConnection"),
+                    b => b.MigrationsAssembly("BookCollection"));
             });
+
             services.AddTransient<BookRepository, BookRepository>();
             services.AddTransient<BooksViewer, BooksViewer>();
 

@@ -1,6 +1,8 @@
 using BookCollection.App.AddBook;
+using BookCollection.App.ViewAuthors;
 using BookCollection.App.ViewBooks;
 using BookCollection.Data;
+using BookCollection.Data.Authors;
 using BookCollection.Data.Books;
 using BookCollection.Domain;
 using Microsoft.AspNetCore.Builder;
@@ -32,6 +34,10 @@ namespace BookCollection
 
             // Add book use case
             services.AddTransient<BookAdder, BookAdder>();
+
+            // View authors use case
+            services.AddTransient<AuthorRepository, AuthorRepository>();
+            services.AddTransient<AuthorsViewer, AuthorsViewer>();
 
             services.AddControllers();
         }

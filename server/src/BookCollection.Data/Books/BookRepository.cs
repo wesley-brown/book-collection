@@ -13,11 +13,11 @@ namespace BookCollection.Data.Books
             this.context = context;
         }
 
-        public IEnumerable<Book> Books
+        public List<Book> Books
         {
             get
             {
-                return context.Books.Include(book => book.Author);
+                return new List<Book>(context.Books.Include(book => book.Author));
             }
         }
 
@@ -26,6 +26,26 @@ namespace BookCollection.Data.Books
             var addedBook = context.Add(book);
             context.SaveChanges();
             return addedBook.Entity;
+        }
+
+        /// <summary>
+        /// Delete the book with the given title if it exists.
+        /// </summary>
+        /// <param name="book">The title of the book to delete.</param>
+        /// <returns>The deleted book or null if no book was deleted.</returns>
+        public Book Delete(string title)
+        {
+            var book = context.Books.Find(title);
+            if (book != null)
+            {
+                var deletedBook = context.Remove(book).Entity;
+                context.SaveChanges();
+                return deletedBook;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

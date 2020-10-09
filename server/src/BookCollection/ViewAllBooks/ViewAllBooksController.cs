@@ -14,9 +14,10 @@ namespace BookCollection.ViewAllBooks
             this.booksViewer = booksViewer;
         }
 
-        public IActionResult GetAllBooks()
+        [HttpGet]
+        public IActionResult GetAllBooks(string sort_by)
         {
-            return Ok(booksViewer.All);
+            return Ok(booksViewer.AllBy(sort_by));
         }
     }
 }

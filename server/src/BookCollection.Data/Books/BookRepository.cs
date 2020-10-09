@@ -1,6 +1,7 @@
 ﻿using BookCollection.Domain;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BookCollection.Data.Books
 {
@@ -19,6 +20,22 @@ namespace BookCollection.Data.Books
             {
                 return new List<Book>(context.Books.Include(book => book.Author));
             }
+        }
+
+        public IEnumerable<Book> BooksByTitle()
+        {
+            return context
+                .Books
+                .OrderBy(book => book.Title)
+                .Include(book => book.Author);
+        }
+
+        public IEnumerable<Book> BooksByAuthor()
+        {
+            return context
+                .Books
+                .OrderBy(book => book.Author)
+                .Include(book => book.Author);
         }
 
         public Book WithTitle(string title)

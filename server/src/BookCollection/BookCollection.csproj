@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <Folder Include="ViewAllBooks\" />
+    <Folder Include="AddBook\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BookCollection.App\BookCollection.App.csproj">

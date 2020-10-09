@@ -1,3 +1,4 @@
+using BookCollection.App.AddBook;
 using BookCollection.App.ViewBooks;
 using BookCollection.Data;
 using BookCollection.Data.Books;
@@ -28,6 +29,10 @@ namespace BookCollection
             });
             services.AddTransient<BookRepository, BookRepository>();
             services.AddTransient<BooksViewer, BooksViewer>();
+
+            // Add book use case
+            services.AddTransient<BookAdder, BookAdder>();
+
             services.AddControllers();
         }
 

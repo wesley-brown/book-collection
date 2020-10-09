@@ -20,5 +20,12 @@ namespace BookCollection.Data.Books
                 return context.Books.Include(book => book.Author);
             }
         }
+
+        public Book Add(Book book)
+        {
+            var addedBook = context.Add(book);
+            context.SaveChanges();
+            return addedBook.Entity;
+        }
     }
 }

@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<body>
+    <h1>Add a Book</h1>
+    <input id="titleInput" type="text" />
+    <input id="authorInput" type="text" />
+    <button type="submit" onclick="addBook()">Add</button>
+    <script>
+        const titleInput = document.getElementById('titleInput');
+        const author = document.getElementById('authorInput');
+        const addBook = () => {
+            const title = titleInput.value;
+            const author = authorInput.value;
+            fetch('https://localhost:5001/api/books', {
+                method: 'POST',
+                body: JSON.stringify({ title, author }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(json => {
+                window.location.replace('https://localhost:5001/index.html');
+            });
+        };
+    </script>
+</body>
+</html>

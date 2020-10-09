@@ -2,6 +2,7 @@
 <html>
 <body>
     <h1>Books</h1>
+    <a href="AddBook.html">Add a book</a>
     <div id="booksDiv"></div>
     <script>
         class Author {
@@ -37,7 +38,6 @@
                     const bookEntry = document.createElement("p");
                     bookEntry.innerHTML = book.title + " by: " + book.author.name;
                     booksDiv.appendChild(bookEntry);
-                    console.log(books);
                 }
             });
     </script>

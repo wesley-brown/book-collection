@@ -5,8 +5,16 @@
     <a href="AddBook.html">Add a book</a>
     <a href="DeleteBook.html">Delete a book</a>
     <a href="EditBook.html">Edit a book</a>
+    <div id="sortingOptions">
+        <label for="sortByTitle">Sort by title: </label>
+        <input type="radio" id="sortByTitle" name="sortBy" value="sortByTitle" />
+
+        <label for="sortByAuthor">Sort by author: </label>
+        <input type="radio" id="sortByAuthor" name="sortBy" value="sortByAuthor" />
+    </div>
     <div id="booksDiv"></div>
-    <script>class Author {
+    <script>
+        class Author {
             constructor(name) {
                 this.name = name;
             }
@@ -28,19 +36,32 @@
         }
 
         const booksDiv = document.getElementById('booksDiv');
-        fetch('https://localhost:5001/api/books')
-            .then(response => {
-                return response.json();
-            })
+        const updateBooksFrom = url => {
+            booksDiv.innerHTML = "";
+            fetch(url)
+            .then(response => response.json())
             .then(books => {
                 for (let bookData of books) {
-                    console.log(bookData);
                     const author = new Author(bookData.author.name);
                     const book = new Book(bookData.title, author);
-                    const bookEntry = document.createElement("p");
-                    bookEntry.innerHTML = book.title + " by: " + book.author.name;
+                    const bookEntry = document.createElement('p');
+                    bookEntry.innerHTML = book.title + ' by: ' + book.author.name;
                     booksDiv.appendChild(bookEntry);
                 }
-            });</script>
+            });
+        };
+
+        const sortByTitleOption = document.getElementById('sortByTitle');
+        sortByTitleOption.onclick = () => {
+            updateBooksFrom('https://localhost:5001/api/books?sort_by=title');
+        };
+
+        const sortByAuthorOption = document.getElementById('sortByAuthor');
+        sortByAuthor.onclick = () => {
+            updateBooksFrom('https://localhost:5001/api/books?sort_by=author');
+        };
+
+        updateBooksFrom('https://localhost:5001/api/books');
+    </script>
 </body>
 </html>

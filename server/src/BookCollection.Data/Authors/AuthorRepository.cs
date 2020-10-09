@@ -12,11 +12,27 @@ namespace BookCollection.Data.Authors
             this.context = context;
         }
 
-        public IEnumerable<Author> Authors
+        public List<Author> Authors
         {
             get
             {
-                return context.Authors;
+                return new List<Author>(context.Authors);
+            }
+        }
+
+        public Author AuthorWithName(string name)
+        {
+            var author = context.Authors.Find(name);
+            if (author == null)
+            {
+                var newAuthor = new Author(name);
+                context.Add(newAuthor);
+                context.SaveChanges();
+                return newAuthor;
+            }
+            else
+            {
+                return author;
             }
         }
     }

@@ -33,9 +33,7 @@ namespace BookCollection.AddBook
         [HttpPost]
         public IActionResult PostBook(AddBookRequest request)
         {
-            var author = new Author(request.Author);
-            var book = new Book(request.Title, author);
-            return CreatedAtAction(null, bookAdder.Add(book));
+            return CreatedAtAction(null, bookAdder.Add(request.Title, request.Author));
         }
     }
 }
